@@ -1,0 +1,83 @@
+#home {
+    background-image: url('../../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    justify-content: space-around;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+
+    section {
+        background-color: rgba(0, 0, 0, 0.7);
+        height: 80%;
+        width: 35%;
+        padding-left: $md;
+        padding-right: $md;
+    }
+
+    .cube {
+        font-size: 8rem;
+        color: $orange;
+        text-align: center;
+    }
+
+    h1 {
+        color: $off-white;
+        font-size: $lg;
+        font-weight: 600;
+    }
+
+    .play-button-container {
+        width: 100%;
+
+    }
+
+    a.btn-play {
+        background-color: $green;
+        color: #fff;
+        cursor: pointer;
+        padding: $normal;
+        display: block;
+        border-radius: $button-radius;
+        margin-bottom: $lg;
+        margin-top: $normal;
+        transition: 0.3s linear all;
+    }
+
+    a.btn-play:hover {
+        background-color: darken($green, 10%);
+    }
+
+    .auth-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            color: #fff;
+            cursor: pointer;
+            border-radius: $button-radius;
+            padding: $normal;
+            text-align: center;
+            width: 45%;
+            transition: 0.3s linear all;
+        }
+    }
+
+    .btn-login {
+        background-color: $red;
+    }
+
+    .btn-login:hover {
+        background-color: darken($red, 10%);
+    }
+
+    .btn-register {
+        background-color: aqua;
+    }
+
+    .btn-register:hover {
+        background-color: darken(aqua, 10%);
+    }
+}
