@@ -41,6 +41,12 @@
     .option:hover {
        background-color: darken($blue, 20%); 
     }
+    .lifeline-icon {
+        color: $green !important;
+    }
+    .lifeline-icon:hover {
+        color: darken($green, 50%)
+    }
 
 }
 .button-container {
