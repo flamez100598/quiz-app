@@ -106,7 +106,7 @@ class Play extends Component {
         this.audio.pause();
         this.setState(prevState => ({
             wrongAnswers: prevState.wrongAnswers + 1,
-            currentQuestionIndex: prevState.currentQuestionIndex !== this.state.questions.length ? prevState.currentQuestionIndex + 1 : prevState.currentQuestionIndex,
+            currentQuestionIndex: (prevState.currentQuestionIndex + 1) !== this.state.questions.length ? prevState.currentQuestionIndex + 1 : prevState.currentQuestionIndex,
             numberOfAnsweredQuestion: prevState.numberOfAnsweredQuestion + 1
         }), () => {
             this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion)
@@ -267,10 +267,16 @@ class Play extends Component {
     componentDidUpdate() {
         if (this.state.numberOfAnsweredQuestion === this.state.questions.length) {
             this.endedGame();
+          
         }
     }
     endedGame = () => {
-        alert("Quiz has ended");
+        const { state } = this;
+        if (state.correctAnswers > 9) {
+            alert(`You are correct ${state.correctAnswers} in ${state.numberOfAnsweredQuestion} so you are Vietnamese!!!`);
+        } else {
+            alert("Let learning Vietnam's history!")
+        }
         this.props.history.push('/')
     }
     render() {
