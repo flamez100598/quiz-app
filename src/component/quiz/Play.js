@@ -88,7 +88,7 @@ class Play extends Component {
         this.setState(prevState => ({
             score: prevState.score + 1,
             correctAnswers: prevState.correctAnswers + 1,
-            currentQuestionIndex: prevState.currentQuestionIndex + 1,
+            currentQuestionIndex: (prevState.currentQuestionIndex + 1) !== this.state.questions.length ? prevState.currentQuestionIndex + 1 : prevState.currentQuestionIndex,
             numberOfAnsweredQuestion: prevState.numberOfAnsweredQuestion + 1
 
         }), () => {
@@ -106,7 +106,7 @@ class Play extends Component {
         this.audio.pause();
         this.setState(prevState => ({
             wrongAnswers: prevState.wrongAnswers + 1,
-            currentQuestionIndex: prevState.currentQuestionIndex + 1,
+            currentQuestionIndex: prevState.currentQuestionIndex !== this.state.questions.length ? prevState.currentQuestionIndex + 1 : prevState.currentQuestionIndex,
             numberOfAnsweredQuestion: prevState.numberOfAnsweredQuestion + 1
         }), () => {
             this.displayQuestions(this.state.questions, this.state.currentQuestion, this.state.nextQuestion, this.state.previousQuestion)
@@ -253,10 +253,7 @@ class Play extends Component {
                         minutes: 0,
                         seconds: 0
                     }
-                }, () => {
-                    alert("Quiz has ended");
-                    this.props.history.push('/')
-                })
+                }, this.endedGame())
             } else {
                 this.setState({
                     time: {
@@ -266,6 +263,15 @@ class Play extends Component {
                 })
             }
         }, 1000);
+    }
+    componentDidUpdate() {
+        if (this.state.numberOfAnsweredQuestion === this.state.questions.length) {
+            this.endedGame();
+        }
+    }
+    endedGame = () => {
+        alert("Quiz has ended");
+        this.props.history.push('/')
     }
     render() {
         const { time, hints, currentQuestion, currentQuestionIndex, questions, fiftyFifty } = this.state;
